@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SwasthyaSetu - Hospital Management System</title>
+  <style>
+    /* ------------------
+       Theme tokens
+       ------------------ */
+    :root{
+      --bg: #0f1724;
+      --muted: #98a0b3;
+      --accent: linear-gradient(90deg,#6ee7b7,#3b82f6);
+      --card-glow: rgba(59,130,246,0.12);
+      --glass-border: rgba(255,255,255,0.06);
+      --radius: 14px;
+      --smooth: 250ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(59,130,246,0.06), transparent 6%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(110,231,183,0.04), transparent 6%),
+                  var(--bg);
+      color:#e6eef8;
+      line-height:1.45;
+      padding:28px 18px;
+    }
+
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    header h1{font-size:22px;margin:0;font-weight:700;letter-spacing:0.5px}
+    nav a{
+      margin-left:12px;
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:8px 12px;
+      border-radius:10px;
+      transition:all var(--smooth);
+    }
+    nav a:hover{
+      color:white;
+      transform:translateY(-2px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      padding:18px;
+      margin-bottom:20px;
+      box-shadow: 0 6px 24px rgba(3,7,18,0.6);
+      transition: transform var(--smooth), box-shadow var(--smooth);
+    }
+    .card:hover{
+      transform: translateY(-6px) scale(1.005);
+      box-shadow: 0 18px 40px rgba(3,7,18,0.7);
+      border-color: var(--card-glow);
+    }
+
+    h2{margin:0 0 10px;color:#f8fbff}
+    .muted{color:var(--muted);font-size:13px}
+
+    input, select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      background: rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      color: #e8f0ff;
+      font-size:14px;
+      margin-bottom:12px;
+      outline:none;
+      transition: box-shadow var(--smooth), transform var(--smooth);
+    }
+    input::placeholder{color: rgba(232,240,255,0.35)}
+    input:focus, select:focus{
+      box-shadow: 0 6px 24px rgba(59,130,246,0.12);
+      border-color: rgba(59,130,246,0.9);
+      transform: translateY(-2px);
+    }
+
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      font-weight:600;
+      cursor:pointer;
+      transition:transform var(--smooth), box-shadow var(--smooth);
+    }
+    .btn.primary{
+      background: var(--accent);
+      color: #04273b;
+      box-shadow: 0 6px 24px rgba(59,130,246,0.2);
+    }
+    .btn.primary:hover{transform:translateY(-4px); box-shadow: 0 18px 48px rgba(59,130,246,0.28)}
+
+    /* Login special */
+    #login.card{
+      max-width:400px;
+      margin:30px auto;
+      position:relative;
+      overflow:hidden;
+    }
+    @keyframes float-in {
+      from { opacity:0; transform: translateY(18px) scale(0.98) }
+      to   { opacity:1; transform: translateY(0) scale(1) }
+    }
+    #login{ animation: float-in 520ms cubic-bezier(.2,.9,.2,1) both }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>🕉 SwasthyaSetu</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#user">User Management</a>
+        <a href="#patient">Patients</a>
+        <a href="#doctor">Doctors & Staff</a>
+        <a href="#appointment">Appointments</a>
+        <a href="#billing">Billing</a>
+        <a href="#login">Login</a>
+      </nav>
+    </header>
+
+    <!-- Welcome -->
+    <div class="card">
+      <h2>Welcome to SwasthyaSetu</h2>
+      <p class="muted">
+        A Vedic-inspired Hospital Management System – manage patients, staff, appointments, billing, and pharmacy all in one place.
+      </p>
+    </div>
+
+    <!-- User Management -->
+    <div id="user" class="card">
+      <h2>👤 User Management</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <select>
+          <option value="">Select Role</option>
+          <option>Admin</option>
+          <option>Doctor</option>
+          <option>Nurse</option>
+          <option>Receptionist</option>
+        </select>
+        <input type="password" placeholder="Password" required>
+        <button class="btn primary" type="submit">Register User</button>
+      </form>
+    </div>
+
+    <!-- Patient Management -->
+    <div id="patient" class="card">
+      <h2>🏥 Patient Management</h2>
+      <form>
+        <input type="text" placeholder="Patient Name" required>
+        <input type="number" placeholder="Age" required>
+        <input type="text" placeholder="Medical History">
+        <input type="text" placeholder="Allergies">
+        <button class="btn primary" type="submit">Add Patient</button>
+      </form>
+    </div>
+
+    <!-- Doctor & Staff Management -->
+    <div id="doctor" class="card">
+      <h2>👨‍⚕️ Doctor & Staff Management</h2>
+      <form>
+        <input type="text" placeholder="Staff Name" required>
+        <input type="text" placeholder="Specialization / Department">
+        <input type="text" placeholder="Availability (e.g. Mon-Fri)">
+        <button class="btn primary" type="submit">Add Staff</button>
+      </form>
+    </div>
+
+    <!-- Appointment Management -->
+    <div id="appointment" class="card">
+      <h2>📅 Appointment Management</h2>
+      <form>
+        <input type="text" placeholder="Patient Name" required>
+        <input type="text" placeholder="Doctor Name" required>
+        <input type="date" required>
+        <input type="time" required>
+        <button class="btn primary" type="submit">Book Appointment</button>
+      </form>
+    </div>
+
+    <!-- Billing & Pharmacy -->
+    <div id="billing" class="card">
+      <h2>💳 Billing & Pharmacy</h2>
+      <form>
+        <input type="text" placeholder="Patient Name" required>
+        <input type="text" placeholder="Service / Medicine" required>
+        <input type="number" placeholder="Amount" required>
+        <button class="btn primary" type="submit">Generate Invoice</button>
+      </form>
+    </div>
+
+    <!-- Login -->
+    <div id="login" class="card">
+      <h2>🔐 Login</h2>
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button class="btn primary" type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
